@@ -4,7 +4,6 @@ This small library contains the protocol buffers (`protobuf`) of the Tic Tac Toe
 
 The interface is shared by the server, that implements it, and by the client, that needs it to make remote calls.
 
-
 ## Instructions for using Maven
 
 To compile and install:
@@ -12,7 +11,6 @@ To compile and install:
 ```
 mvn install
 ```
-
 
 ## To configure the Maven project in Eclipse
 
@@ -22,7 +20,6 @@ mvn install
 
 Check that the desired POM is selected and 'Finish'.
 
-
-----
+---
 
 [SD Faculty](mailto:leic-sod@disciplinas.tecnico.ulisboa.pt)

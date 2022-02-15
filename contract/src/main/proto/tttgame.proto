@@ -1,44 +1,58 @@
 syntax = "proto3";
 
-package pt.tecnico.ttt;
+package pt.tecnico.ttt.contract;
 
-// The following option causes top-level messages, enums, and services to be defined at the package level, 
-// rather than inside an outer class named after the .proto file.
+/**
+ * The following option causes top-level messages, enums, and services to be defined at the
+ * package level, rather than inside an outer class named after the .proto file.
+ */
 option java_multiple_files = true;
 
-
-// current board operation
-
 message CurrentBoardRequest {
- 	// No arguments for this request.
+  // No arguments for this request.
 }
 
 message CurrentBoardResponse {
-	string board = 1;
+  string board = 1;
 }
 
-
-// play operation
-
 enum PlayResult {
-	UNKNOWN = 0;
-	OUT_OF_BOUNDS = 1;
-	SQUARE_TAKEN = 2;
-	WRONG_TURN = 3;
-	GAME_FINISHED = 4;
-	SUCCESS = 5;
+  UNKNOWN = 0;
+  OUT_OF_BOUNDS = 1;
+  SQUARE_TAKEN = 2;
+  WRONG_TURN = 3;
+  GAME_FINISHED = 4;
+  SUCCESS = 5;
 };
 
-// TODO request and response
+message PlayRequest {
+  repeated int32 play = 1;
+}
 
+message PlayResponse {
+  PlayResult playResult = 1;
+}
 
-// check winner operation
+message CheckWinnerRequest {
+  // No arguments for this request.
+}
 
-// TODO
+message CheckWinnerResponse {
+  int32 checkWinner = 1;
+}
 
+message LastPlayRequest {
+  // No arguments for this request.
+}
 
-// service
+message LastPlayResponse {
+  int32 lastCell = 1;
+  int32 lastPlayer = 2;
+}
 
 service TTT {
-	rpc CurrentBoard(CurrentBoardRequest) returns (CurrentBoardResponse);
+  rpc CurrentBoard(CurrentBoardRequest) returns (CurrentBoardResponse);
+  rpc Play(PlayRequest) returns (PlayResponse);
+  rpc CheckWinner(CheckWinnerRequest) returns (CheckWinnerResponse);
+  rpc LastPlay(LastPlayRequest) returns (LastPlayResponse);
 }
